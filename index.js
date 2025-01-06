@@ -199,3 +199,19 @@ secondGameContainer.innerHTML = `
     <h3>🥈 Runner Up</h3>
     <p>${secondGame.name}</p>  <!-- Display the name of the second most funded game -->
 `;
+
+
+
+// Search functionality. 
+// For the created input field, listen for user input, and filter the GAMES_JSON based on the name of the game.
+const searchBar = document.getElementById("search-bar");
+
+searchBar.addEventListener("input", function(event) {
+    const searchQuery = event.target.value.toLowerCase();
+    const filteredGames = GAMES_JSON.filter(game => 
+        game.name.toLowerCase().includes(searchQuery)
+    );
+    
+    deleteChildElements(gamesContainer); // Remove all existing game cards
+    addGamesToPage(filteredGames); // Add the filtered games to the page
+});
